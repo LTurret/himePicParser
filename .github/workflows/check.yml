@@ -10,7 +10,7 @@ permissions:
   contents: read
 
 jobs:
-  release:
+  check:
     runs-on: windows-latest
 
     steps:
@@ -35,4 +35,4 @@ jobs:
         run: |
           pip install pyinstaller
           pyinstaller -F himePicParser.py -i "icon.ico"
-          mv ./dist/himePicParser ./himePicParser-v1.0.0-linux
+          mv .\dist\himePicParser.exe .\\himePicParser-v1.0.0-windows.exe
