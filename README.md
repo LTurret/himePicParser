@@ -49,4 +49,5 @@ Licensed under [MIT](./LICENSE)
 
 ## Todo
 
-- [ ] parse SSR pictures
+- [x] parse SSR pictures
+- [ ] addition way to process download
