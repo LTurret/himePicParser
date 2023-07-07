@@ -1,29 +1,38 @@
-from re import search
-
 from argparse import ArgumentParser
 
-import requests
+from asyncio import create_task, gather, new_event_loop, set_event_loop, Task
 
-from bs4 import BeautifulSoup as bs
+from src.fetch import fetch
 
 parser = ArgumentParser(
     prog = "himePicParser",
-    description = "Easy to fetch all pictures in the matsurihi.me"
+    description = "Fetch all url in the matsurihi.me html elements"
 )
 
-parser.add_argument("-U", "--url", nargs="+", type=str, default="https://mltd.matsurihi.me/cards/1945")
-
+parser.add_argument("-U", "--url", nargs="+", type=str, default=["https://mltd.matsurihi.me/cards/1945"])
+parser.add_argument("-D", "--dir", nargs=1, type=str, default="./")
 args = parser.parse_args()
 
-def main(urls):
+async def main(urls: list[str], directory: str) -> None:
     for url in urls:
-        request = requests.get(url)
-        page = bs(request.content, "html.parser")
-        
-        for element in page.find_all("div", {"class": "card-img-b"}):
-            element = str(element)
-            begin = search("https", element).start()
-            end = search(".png", element).end()
-            print(element[begin:end])
+        queue: list[str] = fetch(url)
 
-main(args.url)
+        if not len(queue):
+            return None
+
+        from aiohttp import ClientSession
+        from src.download import download
+        tasks: list[Task] = []
+
+        async with ClientSession() as session:
+            for asset in queue:
+                directory += asset[0]
+                tasks.append(create_task(download(session, directory, asset[1], asset[2])))
+            await gather(*tasks)
+
+    return None
+
+if __name__ == "__main__":
+    loop = new_event_loop()
+    set_event_loop(loop)
+    loop.run_until_complete(main(args.url, args.dir))
