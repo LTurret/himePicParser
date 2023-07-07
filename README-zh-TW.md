@@ -1,7 +1,7 @@
 # himePicParser
 
-English ｜[繁體中文](./README-zh-TW.md)  
-A tool for downloading all the pictures in a specified card page that belongs to mltd.matsurihi.me
+[English](./README.md)｜繁體中文  
+一款下載 mltd.matsurihi.me 中指定頁面所有圖片的工具
 
 ## Usage
 
@@ -42,20 +42,16 @@ urllib3==2.0.3
 yarl==1.9.2
 ```
 
-#### Options Description
+#### 選項說明
 
-- `-U` is page URL, must start with `https://mltd.matsurihi.me`, Provides multi-URL handling.
-- `-D` determine the folder wheres your image are be stored, which the structure is `./<dir>/CARD_ID` and the default is `./`
+- `-U` 是網頁 URL，必須以 `https://mltd.matsurihi.me` 開頭，提供複數 URL 處理
+- `-D` 決定圖片被儲存的資料夾，其結構為`./<dir>/CARD_ID`，預設為 `./`
 
-#### Argument Example
+#### 參數參考
 
-- `-B` prevent `__pycache__` being created.
-- Using SPACE splits URLs respectively.
+- `-B` 抑制 `__pycache__` 的建立
+- 使用空格分割各個 URL
 
 ```console
 python3 -B main.py https://mltd.matsurihi.me/cards/1945 https://mltd.matsurihi.me/cards/1926
 ```
-
-## Todo
-
-- [ ] parse SSR pictures
