@@ -30,9 +30,3 @@ jobs:
           pip install flake8
           # stop the build if there are Python syntax errors or undefined names
           flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-
-      - name: Compile to executable
-        run: |
-          pip install pyinstaller
-          pyinstaller -F himePicParser.py -i "icon.ico"
-          mv .\dist\himePicParser.exe .\himePicParser-v1.0.0-windows.exe
