@@ -13,6 +13,20 @@ def fetch(url) -> list[tuple]:
     page = bs(request.content, "html.parser")
     queue: list[tuple] = []
 
+    for element in page.find_all("img", {"class": "d-block w-100"}):
+        element: str = str(element)
+
+        begin: int = search("cards/", url).end()
+        folder = f"{url[begin:]}"
+
+        begin : int = search("card_bg/", element).end()
+        end: int = search(".png", element).start()
+        filename: str = element[begin:end]
+
+        begin = search('src="', element).end()
+        end = search('"/>', element).start()
+        queue.append((folder, filename, element[begin:end]))
+
     for element in page.find_all("div", {"class": "card-img-b"}):
         element: str = str(element)
 
