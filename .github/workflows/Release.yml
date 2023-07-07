@@ -39,4 +39,8 @@ jobs:
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
+          tag_name: ${{ github.ref }}
+          name: Release ${{ github.ref }}
+          draft: true
+          prerelease: false
           files: himePicParser-v1.0.0-linux
