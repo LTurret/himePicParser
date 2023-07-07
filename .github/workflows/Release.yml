@@ -2,17 +2,17 @@ name: Release
 
 on:
   push:
-    branches: ["build"]
+    branches: ["release"]
     tags:
       - "v*.*.*"
   pull_request:
-    branches: ["build"]
+    branches: ["release"]
 
 permissions:
   contents: write
 
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
 
     steps:
