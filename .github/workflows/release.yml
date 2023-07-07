@@ -2,18 +2,15 @@ name: Release
 
 on:
   push:
-    branches: ["release"]
     tags:
       - "v*.*.*"
-  pull_request:
-    branches: ["release"]
 
 permissions:
   contents: write
 
 jobs:
   release:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       - name: Checkout
@@ -33,14 +30,14 @@ jobs:
         run: |
           pip install pyinstaller
           pyinstaller -F himePicParser.py -i "icon.ico"
-          mv ./dist/himePicParser ./himePicParser-v1.0.0-linux
+          mv ./dist/himePicParser.exe ./himePicParser-v1.0.0-windows.exe
 
       - name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
           tag_name: ${{ github.ref }}
-          name: Release ${{ github.ref }}
+          name: himePicParser-v1.0.0-linux
           draft: true
           prerelease: false
           files: himePicParser-v1.0.0-linux
