@@ -1,6 +1,6 @@
 # himePicParser
 
-A tool for getting all the pictures url in the specificed card page that belongs to matsurihi.me
+A tool for downloading all the pictures in a specified card page that belongs to mltd.matsurihi.me
 
 ## Build
 
@@ -44,12 +44,12 @@ options:
 #### Options Description
 
 - `-U` is page URL, must start with `mltd.matsurihi.me`, Provides multi-URL handling.
-- `-D` determine the folder wheres your image are be stored, which the structure is `./<dir>` and the default is `./`
+- `-D` determine the folder wheres your image are be stored, which the structure is `./<dir>/CARD_ID` and the default is `./`
 
 #### Argument Example
 
 - `-B` prevent `__pycache__` being created.
-- Using space splits URLs respectively
+- Using space splits URLs respectively.
 
 ```console
 python3 -B main.py https://mltd.matsurihi.me/cards/1945 https://mltd.matsurihi.me/cards/1926
