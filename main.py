@@ -26,8 +26,8 @@ async def main(urls: list[str], directory: str) -> None:
 
         async with ClientSession() as session:
             for asset in queue:
-                directory += asset[0]
-                tasks.append(create_task(download(session, directory, asset[1], asset[2])))
+                path = f"{directory}/{asset[0]}"
+                tasks.append(create_task(download(session, path, asset[1], asset[2])))
             await gather(*tasks)
 
     return None

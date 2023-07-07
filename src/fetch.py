@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup as bs
 # creating psudo class -> tuple(folder, filename, url)
 def fetch(url) -> list[tuple]:
     if not findall("mltd.matsurihi.me", url):
-        raise ValueError('Url must starts with "https://mltd.matsurihi.me"')
+        raise ValueError('Url must start with "https://mltd.matsurihi.me"')
 
     request = get(url)
     page = bs(request.content, "html.parser")
