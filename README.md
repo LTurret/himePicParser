@@ -6,7 +6,7 @@ A tool for downloading all the pictures in a specified card page that belongs to
 ## Usage
 
 ```console
-$ python3 main.py -B -U
+$ python3 himePicParser.py -B -U
 usage: himePicParser [-h] [-U URL [URL ...]] [-D DIR]
 
 Fetch all url in the matsurihi.me html elements
@@ -53,7 +53,7 @@ yarl==1.9.2
 - Using SPACE splits URLs respectively.
 
 ```console
-python3 -B main.py https://mltd.matsurihi.me/cards/1945 https://mltd.matsurihi.me/cards/1926
+python3 -B himePicParser.py https://mltd.matsurihi.me/cards/1945 https://mltd.matsurihi.me/cards/1926
 ```
 
 ## Todo
