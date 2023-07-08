@@ -3,7 +3,7 @@
 [English](./README.md)｜繁體中文  
 一款下載 mltd.matsurihi.me 中指定頁面所有圖片的工具
 
-## Usage
+## 使用方法
 
 ```console
 $ python3 himePicParser.py -B -U
@@ -22,7 +22,7 @@ options:
 - `-U` 是網頁 URL，必須以 `https://mltd.matsurihi.me` 開頭，提供複數 URL 處理
 - `-D` 決定圖片被儲存的資料夾，其結構為 `./<dir>/CARD_ID`，預設為 `./`
 
-## Build
+## 建置
 
 ### 安裝依賴項
 
