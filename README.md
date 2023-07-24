@@ -17,6 +17,8 @@ options:
   -D DIR, --dir DIR
 ```
 
+### Option Descriptions
+
 - `-U` is page URL, must start with `https://mltd.matsurihi.me`, Provides multi-URL handling, Every url is split by SPACE
 - `-D` determine the folder wheres your image are be stored, which the structure is `./<dir>/CARD_ID` and the default is `./`
 
