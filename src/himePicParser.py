@@ -2,7 +2,7 @@ from argparse import ArgumentParser
 
 from asyncio import create_task, gather, new_event_loop, set_event_loop, Task
 
-from src.fetch import fetch
+from fetch import fetch
 
 parser = ArgumentParser(
     prog = "himePicParser",
@@ -14,21 +14,24 @@ parser.add_argument("-D", "--dir", nargs=1, type=str, default="./")
 args = parser.parse_args()
 
 async def main(urls: list[str], directory: str) -> None:
+    queue: list[str] = []
     for url in urls:
-        queue: list[str] = fetch(url)
+        queue.append(create_task(fetch(url)))
+    await gather(*queue)
 
-        if not len(queue):
-            return None
+    if not len(queue):
+        return None
 
-        from aiohttp import ClientSession
-        from src.download import download
-        tasks: list[Task] = []
+    from aiohttp import ClientSession
+    from download import download
+    tasks: list[Task] = []
 
-        async with ClientSession() as session:
-            for asset in queue:
+    async with ClientSession() as session:
+        for page in queue:
+            for asset in page.result():
                 path = f"{directory}/{asset[0]}"
                 tasks.append(create_task(download(session, path, asset[1], asset[2])))
-            await gather(*tasks)
+        await gather(*tasks)
 
     return None
 

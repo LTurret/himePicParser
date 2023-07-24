@@ -5,7 +5,7 @@ from requests import get
 from bs4 import BeautifulSoup as bs
 
 # creating psudo class -> tuple(folder, filename, url)
-def fetch(url) -> list[tuple]:
+async def fetch(url) -> list[tuple]:
     if not findall("mltd.matsurihi.me", url):
         raise ValueError('Url must start with "https://mltd.matsurihi.me"')
 
