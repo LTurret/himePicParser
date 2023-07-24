@@ -38,7 +38,7 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           tag_name: ${{ github.ref }}
-          name: himePicParser-v1.1.0-windows
+          name: himePicParser-v1.2.0-windows
           draft: true
           prerelease: false
-          files: himePicParser-v1.1.0-windows.exe
+          files: himePicParser-v1.2.0-windows.exe
