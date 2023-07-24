@@ -31,7 +31,7 @@ jobs:
           pip install pyinstaller
           cd src
           pyinstaller -F himePicParser.py -i "../icon.ico"
-          mv .\dist\himePicParser.exe .\himePicParser-v1.1.0-windows.exe
+          mv .\dist\himePicParser.exe .\himePicParser-v1.2.0-windows.exe
 
       - name: Release
         uses: softprops/action-gh-release@v1
