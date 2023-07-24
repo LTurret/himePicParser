@@ -29,7 +29,8 @@ jobs:
       - name: Compile to executable
         run: |
           pip install pyinstaller
-          pyinstaller -F himePicParser.py -i "icon.ico"
+          cd src
+          pyinstaller -F himePicParser.py -i "../icon.ico"
           mv .\dist\himePicParser.exe .\himePicParser-v1.1.0-windows.exe
 
       - name: Release
